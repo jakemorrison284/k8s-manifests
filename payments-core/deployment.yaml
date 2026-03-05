@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-core
+  namespace: novapay
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: payments-core
+  template:
+    spec:
+      containers:
+      - name: payments-core
+        image: novapay/payments-core:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: IDEMPOTENCY_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              name: novapay-secrets
+              key: redis-url
