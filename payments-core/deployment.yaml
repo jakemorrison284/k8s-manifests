@@ -23,8 +23,8 @@ spec:
               key: redis-url
         resources:
           requests:
-            memory: "200Mi"
-            cpu: "100m"
+            memory: "400Mi"
+            cpu: "300m"
           limits:
-            memory: "500Mi"
-            cpu: "200m"
+            memory: "800Mi"
+            cpu: "400m"
