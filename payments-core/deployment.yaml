@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: payments-core
-        image: novapay/payments-core:latest
+        image: novapay/payments-core:v1.0.0
         ports:
         - containerPort: 8080
         env:
@@ -28,3 +28,15 @@ spec:
           limits:
             memory: "800Mi"
             cpu: "400m"
+        livenessProbe:
+          httpGet:
+            path: /health/liveness
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health/readiness
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
