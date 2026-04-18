@@ -23,11 +23,11 @@ spec:
               key: redis-url
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "400m"
-          limits:
             memory: "1Gi"
             cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1"
         livenessProbe:
           httpGet:
             path: /health/liveness
