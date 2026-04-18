@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: payments-core
-        image: novapay/payments-core:v1.0.0
+        image: novapay/payments-core:v1.1.0
         ports:
         - containerPort: 8080
         env:
