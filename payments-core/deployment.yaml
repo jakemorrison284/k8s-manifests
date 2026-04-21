@@ -4,7 +4,7 @@ metadata:
   name: payments-core
   namespace: novapay
 spec:
-  replicas: 3
+  replicas: 2  # Reduced from 3 to 2
   selector:
     matchLabels:
       app: payments-core
@@ -27,11 +27,11 @@ spec:
               key: redis-url
         resources:
           requests:
-            memory: "3Gi"
-            cpu: "1.5"
+            memory: "2Gi"  # Adjusted requests
+            cpu: "1"
           limits:
-            memory: "6Gi"
-            cpu: "3"
+            memory: "4Gi"  # Adjusted limits
+            cpu: "2.5"
         livenessProbe:
           httpGet:
             path: /health/liveness
