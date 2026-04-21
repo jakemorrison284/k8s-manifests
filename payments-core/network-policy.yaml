@@ -23,3 +23,30 @@ spec:
     ports:
     - protocol: TCP
       port: <service-port>  # Specify appropriate service port
+
+---
+
+# Additional Network Policy
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: payments-core-network-policy
+  namespace: novapay
+spec:
+  podSelector:
+    matchLabels:
+      app: payments-core
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: some-allowed-service  # Replace with actual service labels
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: allowed-external-service  # Replace with actual service labels
