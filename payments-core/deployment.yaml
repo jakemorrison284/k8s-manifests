@@ -27,20 +27,20 @@ spec:
               key: redis-url
         resources:
           requests:
-            memory: "2Gi"
-            cpu: "1"
+            memory: "3Gi"
+            cpu: "1.5"
           limits:
-            memory: "4Gi"
-            cpu: "2"
+            memory: "6Gi"
+            cpu: "3"
         livenessProbe:
           httpGet:
             path: /health/liveness
             port: 8080
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /health/readiness
             port: 8080
-          initialDelaySeconds: 5
+          initialDelaySeconds: 15
           periodSeconds: 10
