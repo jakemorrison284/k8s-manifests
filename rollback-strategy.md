@@ -30,12 +30,14 @@ To establish a rollback strategy for the Redis deployment within the Kubernetes 
    ```bash
    kubectl rollout status deployment/payments-core -n novapay
    ```
+   - **Enhanced Monitoring**: Integrate application-level metrics and automated health checks to trigger alerts or initiate failover procedures based on predefined thresholds. Consider using tools like Prometheus and Grafana for comprehensive visibility.
 
 4. **Rollback Command**:  
    If the rollout fails or issues are detected, you can roll back to the previous version using:
    ```bash
    kubectl rollout undo deployment/payments-core -n novapay
    ```
+   - **Automation of Rollback**: Explore options for automating the rollback process based on error rates or other performance metrics to expedite recovery during incidents.
 
 5. **Verification**:  
    After rollback, verify that the application is functioning as expected.
