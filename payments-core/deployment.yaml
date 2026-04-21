@@ -25,12 +25,17 @@ spec:
             secretKeyRef:
               name: novapay-secrets
               key: redis-url
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: novapay-secrets
+              key: database-url
         resources:
           requests:
-            memory: "5Gi"  # Updated requests
+            memory: "6Gi"  # Increased requests for stability
             cpu: "2"
           limits:
-            memory: "10Gi"  # Updated limits
+            memory: "12Gi"  # Increased limits for performance
             cpu: "4"
         livenessProbe:
           httpGet:
