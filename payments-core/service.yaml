@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: payments-core-service
   namespace: novapay
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"  # Example for AWS NLB
 spec:
   selector:
     app: payments-core
