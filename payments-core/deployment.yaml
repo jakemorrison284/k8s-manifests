@@ -27,11 +27,11 @@ spec:
               key: redis-url
         resources:
           requests:
-            memory: "3Gi"  # Adjusted requests
-            cpu: "1.5"
+            memory: "4Gi"  # Increased from 3Gi to 4Gi
+            cpu: "2"      # Increased from 1.5 to 2
           limits:
-            memory: "6Gi"  # Adjusted limits
-            cpu: "3.5"
+            memory: "8Gi"  # Increased from 6Gi to 8Gi
+            cpu: "4"       # Increased from 3.5 to 4
         livenessProbe:
           httpGet:
             path: /health/liveness
