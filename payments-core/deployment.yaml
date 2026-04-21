@@ -1,42 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payments-core
-  namespace: novapay
+  name: payments-core-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: payments-core
   template:
+    metadata:
+      labels:
+        app: payments-core
     spec:
       containers:
       - name: payments-core
-        image: novapay/payments-core:v1.2.0
-        ports:
-        - containerPort: 8080
-        env:
-        - name: IDEMPOTENCY_REDIS_URL
-          valueFrom:
-            secretKeyRef:
-              name: novapay-secrets
-              key: redis-url
+        image: payments-core:latest
         resources:
           requests:
-            memory: "2Gi"
-            cpu: "1"
+            memory: "256Mi"
+            cpu: "250m"
           limits:
-            memory: "4Gi"
-            cpu: "2"
-        livenessProbe:
-          httpGet:
-            path: /health/liveness
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /health/readiness
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 10
+            memory: "512Mi"
+            cpu: "500m"
