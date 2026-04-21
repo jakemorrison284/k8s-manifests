@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-payments-core-to-redis
+  namespace: novapay
+spec:
+  podSelector:
+    matchLabels:
+      app: payments-core
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: payments-core
+    ports:
+    - protocol: TCP
+      port: 6379 # Assuming Redis runs on port 6379
