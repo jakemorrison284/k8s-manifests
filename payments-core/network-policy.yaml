@@ -1,36 +1,6 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-payments-core-to-redis
-  namespace: novapay
-spec:
-  podSelector:
-    matchLabels:
-      app: payments-core
-  ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          app: payments-core
-    ports:
-    - protocol: TCP
-      port: 6379 # Assuming Redis runs on port 6379
-  egress:
-  - to:
-    - podSelector:
-        matchLabels:
-          app: some-external-service  # Replace with actual service labels
-    ports:
-    - protocol: TCP
-      port: <service-port>  # Specify appropriate service port
-
----
-
-# Additional Network Policy
-
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
   name: payments-core-network-policy
   namespace: novapay
 spec:
@@ -44,9 +14,12 @@ spec:
   - from:
     - podSelector:
         matchLabels:
-          app: some-allowed-service  # Replace with actual service labels
+          app: allowed-service  # Specify actual allowed services
   egress:
   - to:
     - podSelector:
         matchLabels:
-          app: allowed-external-service  # Replace with actual service labels
+          app: allowed-external-service  # Specify actual allowed external services
+    ports:
+    - protocol: TCP
+      port: 6379  # Redis port, or adjust as necessary
