@@ -4,7 +4,7 @@ metadata:
   name: payments-core
   namespace: novapay
 spec:
-  replicas: 2  # Reduced from 3 to 2
+  replicas: 3  # Adjusted replicas for performance
   selector:
     matchLabels:
       app: payments-core
