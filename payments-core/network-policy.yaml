@@ -15,3 +15,11 @@ spec:
     ports:
     - protocol: TCP
       port: 6379 # Assuming Redis runs on port 6379
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: some-external-service  # Replace with actual service labels
+    ports:
+    - protocol: TCP
+      port: <service-port>  # Specify appropriate service port
