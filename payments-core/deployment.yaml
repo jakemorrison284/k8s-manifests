@@ -32,11 +32,11 @@ spec:
               key: database-url
         resources:
           requests:
-            memory: "8Gi"  # Updated request for memory
-            cpu: "2"  # Updated request for CPU
+            memory: "4Gi"  # Adjusted request for memory
+            cpu: "1"  # Adjusted request for CPU
           limits:
-            memory: "16Gi"  # Updated limit for memory
-            cpu: "4"  # Updated limit for CPU
+            memory: "8Gi"  # Adjusted limit for memory
+            cpu: "2"  # Adjusted limit for CPU
         livenessProbe:
           httpGet:
             path: /health/liveness
