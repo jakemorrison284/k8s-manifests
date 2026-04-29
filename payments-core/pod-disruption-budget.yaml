@@ -4,7 +4,7 @@ metadata:
   name: payments-core-pdb
   namespace: novapay
 spec:
-  minAvailable: 2
+  minAvailable: 2  # Ensures at least 2 pods are available during voluntary disruptions
   selector:
     matchLabels:
-      app: payments-core
+      app: payments-core  # Matches the pods to which this PDB applies
