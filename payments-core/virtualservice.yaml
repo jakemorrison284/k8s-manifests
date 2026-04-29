@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: payments-core
+  namespace: novapay
+spec:
+  hosts:
+  - novapay/payments-core
+  http:
+  - route:
+    - destination:
+        host: novapay/payments-core
+        port:
+          number: 8080
+      weight: 100
