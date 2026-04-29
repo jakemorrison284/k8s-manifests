@@ -16,7 +16,7 @@ spec:
         fsGroup: 2000
       containers:
       - name: payments-core
-        image: novapay/payments-core:v1.2.0
+        image: novapay/payments-core:v1.3.0
         ports:
         - containerPort: 8080
         env:
@@ -32,11 +32,11 @@ spec:
               key: database-url
         resources:
           requests:
-            memory: "4Gi"  # Updated request for memory
-            cpu: "1"  # Updated request for CPU
+            memory: "8Gi"  # Updated request for memory
+            cpu: "2"  # Updated request for CPU
           limits:
-            memory: "8Gi"  # Updated limit for memory
-            cpu: "2"  # Updated limit for CPU
+            memory: "16Gi"  # Updated limit for memory
+            cpu: "4"  # Updated limit for CPU
         livenessProbe:
           httpGet:
             path: /health/liveness
