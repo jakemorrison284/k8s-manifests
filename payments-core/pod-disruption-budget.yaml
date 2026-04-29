@@ -4,7 +4,7 @@ metadata:
   name: payments-core-pdb
   namespace: novapay
 spec:
-  minAvailable: 1
+  minAvailable: 2
   selector:
     matchLabels:
       app: payments-core
