@@ -32,10 +32,10 @@ spec:
               key: database-url
         resources:
           requests:
-            memory: "4Gi"  # Adjusted request for memory
+            memory: "2Gi"  # Adjusted request for memory
             cpu: "1"  # Adjusted request for CPU
           limits:
-            memory: "8Gi"  # Adjusted limit for memory
+            memory: "4Gi"  # Adjusted limit for memory
             cpu: "2"  # Adjusted limit for CPU
         livenessProbe:
           httpGet:
