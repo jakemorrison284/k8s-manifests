@@ -6,6 +6,8 @@ metadata:
 spec:
   host: novapay/payments-core
   trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL  # Enable mTLS
     connectionPool:
       tcp:
         maxConnections: 100
