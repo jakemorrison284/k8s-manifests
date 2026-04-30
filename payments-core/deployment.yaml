@@ -15,6 +15,8 @@ spec:
         runAsGroup: 3000
         fsGroup: 2000
         runAsNonRoot: true
+      podSecurityContext:
+        fsGroup: 2000
       containers:
       - name: payments-core
         image: novapay/payments-core:v1.3.1
@@ -35,9 +37,11 @@ spec:
           requests:
             memory: "1Gi"  # Increased request for memory to better reflect average load
             cpu: "500m"  # Increased request for CPU
+            ephemeral-storage: "500Mi"  # Added ephemeral storage request
           limits:
             memory: "2Gi"  # Increased limit for memory to handle spikes
             cpu: "1"  # Increased limit for CPU to allow burst capacity
+            ephemeral-storage: "1Gi"  # Added ephemeral storage limit
         livenessProbe:
           httpGet:
             path: /health/liveness
@@ -50,3 +54,5 @@ spec:
             port: 8080
           initialDelaySeconds: 10  # Optimized
           periodSeconds: 10
+        securityContext:
+          readOnlyRootFilesystem: true
