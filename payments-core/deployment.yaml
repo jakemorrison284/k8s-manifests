@@ -39,9 +39,11 @@ spec:
           requests:
             memory: "1.2Gi"  # Adjusted request for memory based on typical load
             cpu: "600m"  # Adjusted request for CPU
+            ephemeral-storage: "1Gi"  # Request for ephemeral storage
           limits:
             memory: "1.8Gi"  # Adjusted limit for memory to allow some burst
             cpu: "1200m"  # Adjusted limit for CPU to allow burst capacity
+            ephemeral-storage: "2Gi"  # Limit for ephemeral storage
         livenessProbe:
           httpGet:
             path: /health/liveness
@@ -54,3 +56,23 @@ spec:
             port: 8080
           initialDelaySeconds: 10
           periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /health/startup
+            port: 8080
+          failureThreshold: 30
+          periodSeconds: 10
+      # Optional readiness gates example (uncomment and customize if needed)
+      # readinessGates:
+      # - conditionType: CustomCondition
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: payments-core-pdb
+  namespace: novapay
+spec:
+  minAvailable: 4  # Maintain at least 4 pods available during disruptions
+  selector:
+    matchLabels:
+      app: payments-core
