@@ -28,6 +28,13 @@ spec:
         volumeMounts:
         - mountPath: /data
           name: redis-storage
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+              - ALL
       volumes:
       - name: redis-storage
         persistentVolumeClaim:
