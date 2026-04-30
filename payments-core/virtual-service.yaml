@@ -12,4 +12,13 @@ spec:
         host: novapay/payments-core
         port:
           number: 8080
-      weight: 100
+      weight: 80
+    - destination:
+        host: novapay/payments-core-canary
+        port:
+          number: 8080
+      weight: 20
+      timeout: 5s
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
