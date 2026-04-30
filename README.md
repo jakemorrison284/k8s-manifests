@@ -1,8 +1,8 @@
-# k8s-manifests
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/jakemorrison284/k8s-manifests/actions)  
 [![Latest Release](https://img.shields.io/badge/release-v1.0-blue.svg)](https://github.com/jakemorrison284/k8s-manifests/releases/latest)
+
+# k8s-manifests
 
 Kubernetes manifests for all NovaPay services.
 
