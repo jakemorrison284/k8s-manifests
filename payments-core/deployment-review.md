@@ -18,6 +18,7 @@ This document provides a review of the current Kubernetes deployment configurati
 
 1. **Resource Optimization:**
    - Validate resource requests and limits against real usage metrics to optimize capacity and cost.
+   - Specifically verify resource allocation during peak load scenarios to ensure performance stability.
 
 2. **Container Image Management:**
    - Ensure the container image is regularly updated and scanned for security vulnerabilities.
@@ -30,6 +31,15 @@ This document provides a review of the current Kubernetes deployment configurati
 
 5. **Deployment and Rollback Strategies:**
    - Document specific deployment strategies (e.g., rolling updates) and rollback plans if not already in place.
+
+6. **Security Policy Compliance:**
+   - Validate the security context settings against organizational security policies and compliance requirements.
+
+7. **Backup and Disaster Recovery:**
+   - Consider backup strategies and disaster recovery plans for critical data and configurations.
+
+8. **Version Reviews:**
+   - Periodically review and update Kubernetes and Istio versions to maintain compatibility, performance, and security.
 
 ## Additional Notes
 
