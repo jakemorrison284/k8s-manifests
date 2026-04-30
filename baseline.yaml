@@ -13,11 +13,22 @@ securityPolicies:
       ingress: true
       egress: true
   resourceLimits:
-    cpu: "500m"
-    memory: "256Mi"
+    cpu:
+      request: "250m"
+      limit: "500m"
+    memory:
+      request: "128Mi"
+      limit: "256Mi"
+    ephemeralStorage:
+      request: "1Gi"
+      limit: "2Gi"
   imageSecurity:
     requireSignedImages: true
     disallowLatestTag: true
+    enableVulnerabilityScanning: true
+    allowedRegistries:
+      - mytrustedregistry.com
+    enforceDigestUsage: true
   secretsManagement:
     enforceEncryptionAtRest: true
     restrictAccessToSecrets: true
