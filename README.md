@@ -1,8 +1,8 @@
 # k8s-manifests
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
-[![Build Status](https://img.shields.io/badge/build-pending-lightgrey.svg)](#)  
-[![Latest Release](https://img.shields.io/badge/release-v1.0-blue.svg)](#)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/jakemorrison284/k8s-manifests/actions)  
+[![Latest Release](https://img.shields.io/badge/release-v1.0-blue.svg)](https://github.com/jakemorrison284/k8s-manifests/releases/latest)
 
 Kubernetes manifests for all NovaPay services.
 
@@ -37,6 +37,20 @@ Alternatively, to deploy all manifests in the repository, run:
 kubectl apply -f .
 ```
 
+### Additional Usage Examples
+- Deploy only the Redis service:
+  ```bash
+  kubectl apply -f redis-deployment.yaml
+  ```
+- Deploy the Payments Core service:
+  ```bash
+  kubectl apply -f payments-core/
+  ```
+- Deploy the Transaction Engine service:
+  ```bash
+  kubectl apply -f transaction-engine/
+  ```
+
 ## Key Manifests
 - `redis-deployment.yaml`: Deployment configuration for Redis cache service.
 - Manifests in `payments-core/`: Kubernetes resources for the Payments Core service.
@@ -46,10 +60,17 @@ kubectl apply -f .
 - Ensure your kubectl context is set to the correct cluster.
 - Check for resource conflicts or missing permissions.
 - Review pod and event logs for error messages.
+- Common Errors:
+  - `Error from server (AlreadyExists)`: Resource already exists. Consider deleting the existing resource or updating it.
+  - `Error from server (Forbidden)`: Insufficient permissions. Verify your RBAC settings.
+  - `CrashLoopBackOff` status: Check container logs for application errors or misconfigurations.
 
 ## Additional Resources
 - [Kubernetes Documentation](https://kubernetes.io/docs/)
-- [NovaPay Documentation](https://docs.novapay.com) (replace with actual URL if available)
+- [NovaPay Documentation](https://docs.novapay.com) <!-- Please replace with the actual URL if available -->
+
+## Contact and Support
+For support or questions, please contact the NovaPay DevOps team at devops@novapay.com.
 
 ## Contributing
 We welcome contributions! If you'd like to contribute to this repository, please follow these steps:
