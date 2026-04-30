@@ -4,7 +4,7 @@ metadata:
   name: payments-core
   namespace: novapay
 spec:
-  replicas: 5  # Increased replicas for better scalability and availability
+  replicas: 3  # Adjusted replicas to align with HorizontalPodAutoscaler minimum
   selector:
     matchLabels:
       app: payments-core
