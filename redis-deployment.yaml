@@ -13,6 +13,10 @@ spec:
       labels:
         app: redis
     spec:
+      securityContext:
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: redis
         image: redis:8.6.2
@@ -35,6 +39,12 @@ spec:
           capabilities:
             drop:
               - ALL
+        env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: redis-secrets
+              key: redis-password
       volumes:
       - name: redis-storage
         persistentVolumeClaim:
