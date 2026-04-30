@@ -1,0 +1,28 @@
+# Baseline Security Policies Manifesto
+
+# This file maintains the baseline security policies for Kubernetes manifests
+
+securityPolicies:
+  podSecurity:
+    enforce: "restricted"
+    exemptNamespaces:
+      - kube-system
+      - kube-public
+  networkPolicies:
+    defaultDeny:
+      ingress: true
+      egress: true
+  resourceLimits:
+    cpu: "500m"
+    memory: "256Mi"
+  imageSecurity:
+    requireSignedImages: true
+    disallowLatestTag: true
+  secretsManagement:
+    enforceEncryptionAtRest: true
+    restrictAccessToSecrets: true
+  auditing:
+    enableAuditLogging: true
+    auditLogRetentionDays: 30
+
+# Add additional policies as needed
