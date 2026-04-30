@@ -12,6 +12,7 @@ Kubernetes manifests for all NovaPay services.
 - [Installation Instructions](#installation-instructions)
 - [Usage](#usage)
   - [Additional Usage Examples](#additional-usage-examples)
+  - [Managing Updates](#managing-updates)
 - [Key Manifests](#key-manifests)
 - [Troubleshooting](#troubleshooting)
 - [Additional Resources](#additional-resources)
@@ -21,6 +22,11 @@ Kubernetes manifests for all NovaPay services.
 
 ## Project Overview
 This repository contains Kubernetes manifests that define the deployment, service, and configuration resources for all NovaPay services. The manifests are designed to facilitate the deployment and management of NovaPay applications within Kubernetes clusters, ensuring consistency, scalability, and ease of maintenance.
+
+### Key Services Overview
+- **Redis Cache Service:** Provides a high-performance caching layer to improve application response times and reduce database load.
+- **Payments Core Service:** The central service responsible for processing and managing payment transactions securely.
+- **Transaction Engine Service:** Handles transaction workflows, business logic, and integrates with external payment gateways.
 
 ## Prerequisites
 - Kubernetes cluster (version 1.20 or higher recommended)
@@ -64,6 +70,9 @@ kubectl apply -f .
   kubectl apply -f transaction-engine/
   ```
 
+### Managing Updates
+When updating manifests, use the `kubectl apply` command again to apply changes without downtime. For rolling updates, consider using Kubernetes deployment strategies such as rolling update or blue-green deployments.
+
 ## Key Manifests
 - [`redis-deployment.yaml`](https://github.com/jakemorrison284/k8s-manifests/blob/main/redis-deployment.yaml): Deployment configuration for Redis cache service.
 - Manifests in [`payments-core/`](https://github.com/jakemorrison284/k8s-manifests/tree/main/payments-core/): Kubernetes resources for the Payments Core service.
@@ -77,13 +86,16 @@ kubectl apply -f .
   - `Error from server (AlreadyExists)`: Resource already exists. Consider deleting the existing resource or updating it.
   - `Error from server (Forbidden)`: Insufficient permissions. Verify your RBAC settings.
   - `CrashLoopBackOff` status: Check container logs for application errors or misconfigurations.
+- Additional Resources for Troubleshooting:
+  - [Kubernetes Troubleshooting Guide](https://kubernetes.io/docs/tasks/debug/)
+  - [Common Kubernetes Error Messages](https://kubernetes.io/docs/concepts/cluster-administration/troubleshooting/)
 
 ## Additional Resources
 - [Kubernetes Documentation](https://kubernetes.io/docs/)
 - [NovaPay Documentation](https://docs.novapay.com) <!-- Please replace with the actual URL if available -->
 
 ## Contact and Support
-For support or questions, please contact the NovaPay DevOps team at devops@novapay.com.
+For support or questions, please contact the NovaPay DevOps team at [devops@novapay.com](mailto:devops@novapay.com).
 
 ## Contributing
 We welcome contributions! If you'd like to contribute to this repository, please follow these steps:
