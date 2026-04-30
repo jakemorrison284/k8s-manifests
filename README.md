@@ -4,6 +4,8 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/jakemorrison284/k8s-manifests/actions)  
 [![Latest Release](https://img.shields.io/badge/release-v1.0-blue.svg)](https://github.com/jakemorrison284/k8s-manifests/releases/latest)
 
+<!-- Additional badges can be added here, e.g., coverage, linting, security scans -->
+
 Kubernetes manifests for all NovaPay services.
 
 ## Table of Contents
@@ -13,7 +15,11 @@ Kubernetes manifests for all NovaPay services.
 - [Usage](#usage)
   - [Additional Usage Examples](#additional-usage-examples)
   - [Managing Updates](#managing-updates)
+- [Quick Start](#quick-start)
 - [Key Manifests](#key-manifests)
+- [Rollback Strategy](#rollback-strategy)
+- [Environment and Configuration](#environment-and-configuration)
+- [Known Issues](#known-issues)
 - [Troubleshooting](#troubleshooting)
 - [Additional Resources](#additional-resources)
 - [Contact and Support](#contact-and-support)
@@ -44,6 +50,10 @@ To set up the Kubernetes manifests, follow these steps:
    cd k8s-manifests
    ```
 
+### Dependencies
+- Ensure you have `kubectl` installed.
+- If using Helm or Kustomize for deployment customization, please install and configure them accordingly.
+
 ## Usage
 To apply the Kubernetes manifests, use the following command:
 ```bash
@@ -70,13 +80,34 @@ kubectl apply -f .
   kubectl apply -f transaction-engine/
   ```
 
+**Note:** These manifests assume you are using the default Kubernetes namespace. Specify the namespace with the `-n <namespace>` flag if necessary. Ensure your `kubectl` context is set to the target cluster.
+
 ### Managing Updates
-When updating manifests, use the `kubectl apply` command again to apply changes without downtime. For rolling updates, consider using Kubernetes deployment strategies such as rolling update or blue-green deployments.
+When updating manifests, use the `kubectl apply` command again to apply changes without downtime. For rolling updates, consider Kubernetes deployment strategies such as rolling update or blue-green deployments.
+
+## Quick Start
+For a minimal deployment to get started quickly, run:
+```bash
+kubectl apply -f redis-deployment.yaml
+kubectl apply -f payments-core/
+kubectl apply -f transaction-engine/
+```
+This will deploy the core services required for basic operation.
 
 ## Key Manifests
 - [`redis-deployment.yaml`](https://github.com/jakemorrison284/k8s-manifests/blob/main/redis-deployment.yaml): Deployment configuration for Redis cache service.
 - Manifests in [`payments-core/`](https://github.com/jakemorrison284/k8s-manifests/tree/main/payments-core/): Kubernetes resources for the Payments Core service.
 - Manifests in [`transaction-engine/`](https://github.com/jakemorrison284/k8s-manifests/tree/main/transaction-engine/): Kubernetes resources for the Transaction Engine service.
+
+## Rollback Strategy
+For rollback procedures, please refer to the [rollback-strategy.md](rollback-strategy.md) file. It outlines steps to revert deployments safely and minimize downtime.
+
+## Environment and Configuration
+Some manifests may require configuration through environment variables, ConfigMaps, or Secrets. Please review individual manifests for specific configuration requirements. Ensure sensitive data is managed securely using Kubernetes Secrets.
+
+## Known Issues
+- Currently, there are no major known issues. Please check the issue tracker for any updates.
+- If you encounter unexpected behavior, please report it via the repository issues.
 
 ## Troubleshooting
 - Ensure your kubectl context is set to the correct cluster.
