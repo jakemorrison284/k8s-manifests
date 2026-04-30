@@ -33,8 +33,8 @@ spec:
               key: database-url
         resources:
           requests:
-            memory: "700Mi"  # Slightly reduced request for memory to optimize usage
-            cpu: "350m"  # Slightly reduced request for CPU
+            memory: "1Gi"  # Increased request for memory to better reflect average load
+            cpu: "500m"  # Increased request for CPU
           limits:
             memory: "2Gi"  # Increased limit for memory to handle spikes
             cpu: "1"  # Increased limit for CPU to allow burst capacity
