@@ -1,8 +1,11 @@
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
-  name: novapay-strict-mtls
+  name: payments-core-strict-mtls
   namespace: novapay
 spec:
+  selector:
+    matchLabels:
+      app: payments-core
   mtls:
     mode: STRICT
