@@ -4,7 +4,7 @@ metadata:
   name: payments-core
   namespace: novapay
 spec:
-  replicas: 3  # Adjusted replicas for performance
+  replicas: 3  # Maintain replicas for availability
   selector:
     matchLabels:
       app: payments-core
@@ -33,11 +33,11 @@ spec:
               key: database-url
         resources:
           requests:
-            memory: "800Mi"  # Adjusted request for memory
-            cpu: "400m"  # Adjusted request for CPU
+            memory: "700Mi"  # Slightly reduced request for memory to optimize usage
+            cpu: "350m"  # Slightly reduced request for CPU
           limits:
-            memory: "1.5Gi"  # Adjusted limit for memory
-            cpu: "900m"  # Adjusted limit for CPU
+            memory: "2Gi"  # Increased limit for memory to handle spikes
+            cpu: "1"  # Increased limit for CPU to allow burst capacity
         livenessProbe:
           httpGet:
             path: /health/liveness
