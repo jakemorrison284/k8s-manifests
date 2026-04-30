@@ -73,13 +73,76 @@ To establish a rollback strategy for the Redis deployment within the Kubernetes 
 
 ---
 
+## 3. Explicit Rollback Mechanisms for Deployment Images
+
+**Description**: To ensure safe rollback of deployment images, maintain version-controlled manifests and tags for container images.
+
+### Steps for Deployment Image Rollback:
+
+1. **Version Tagging**:  
+   Always tag container images with immutable version tags (e.g., `v1.0.0`, `v1.0.1`) instead of `latest`.
+
+2. **Image Repository Management**:  
+   Keep a record of deployed image tags for each environment and deployment.
+
+3. **Rollback Command**:  
+   To roll back to a previous image version, update the deployment manifest with the prior image tag and apply the changes:
+   ```bash
+   kubectl set image deployment/payments-core payments-core=<image-repo>:<previous-tag> -n novapay
+   kubectl rollout status deployment/payments-core -n novapay
+   ```
+
+4. **Automated Rollback Trigger**:  
+   Integrate monitoring alerts to detect failures or performance degradation after a deployment and trigger automated rollback to the previous stable image.
+
+5. **Verification**:  
+   Confirm the pods are running the rolled-back image and application health is restored.
+
+---
+
+## 4. Explicit Rollback Mechanisms for Security Policies
+
+**Description**: Security policies such as PodSecurityPolicies or NetworkPolicies should be versioned and rollback-capable.
+
+### Steps for Security Policy Rollback:
+
+1. **Version Control**:  
+   Keep security policy manifests in Git with clear versioning and change history.
+
+2. **Backup of Current Policies**:  
+   Before applying new policies, backup current policies using:
+   ```bash
+   kubectl get podsecuritypolicies -o yaml > psp-backup.yaml
+   kubectl get networkpolicies -o yaml > np-backup.yaml
+   ```
+
+3. **Apply New Policies**:  
+   Apply updated security policies using `kubectl apply -f`.
+
+4. **Rollback Command**:  
+   If new policies cause issues (e.g., pod failures or network disruptions), reapply the backup files:
+   ```bash
+   kubectl apply -f psp-backup.yaml
+   kubectl apply -f np-backup.yaml
+   ```
+
+5. **Automated Validation**:  
+   Integrate policy validation in CI/CD pipelines to catch potential issues before deployment.
+
+6. **Verification**:  
+   Monitor pod status and network connectivity to ensure policies are correctly rolled back and functioning.
+
+---
+
 ## Documentation
-Document this rollback strategy within the project documentation repository under a new file, e.g., `rollback-strategy.md`, to ensure that all team members have access to the strategy for future deployments. The document should include:
+Document this rollback strategy within the project documentation repository under `rollback-strategy.md` to ensure all team members have access to the strategy for future deployments. The document includes:
 
 - **Rollback Strategy Overview**
 - **Rolling Update Steps**
 - **Blue-Green Deployment Steps**
+- **Explicit Rollback Mechanisms for Deployment Images**
+- **Explicit Rollback Mechanisms for Security Policies**
 - **Commands for Rollback and Verification**
 - **Considerations for Monitoring and Testing**
 
-This structured approach ensures that the Redis deployment can be managed effectively, minimizing downtime and mitigating risks associated with new releases.
+This comprehensive approach ensures that deployments can be managed effectively, minimizing downtime and mitigating risks associated with new releases and policy changes.
