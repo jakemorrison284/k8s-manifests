@@ -4,7 +4,7 @@ metadata:
   name: payments-core
   namespace: novapay
 spec:
-  replicas: 3  # Maintain replicas for availability
+  replicas: 3  # Consider changing to HPA for dynamic scaling
   selector:
     matchLabels:
       app: payments-core
@@ -36,20 +36,26 @@ spec:
               key: database-url
         resources:
           requests:
-            memory: "1Gi"  # Increased request for memory to better reflect average load
-            cpu: "500m"  # Increased request for CPU
+            memory: "1Gi"  # Adjust according to monitoring data
+            cpu: "500m"
+            ephemeral-storage: "1Gi"  # Added ephemeral storage request
           limits:
-            memory: "2Gi"  # Increased limit for memory to handle spikes
-            cpu: "1"  # Increased limit for CPU to allow burst capacity
+            memory: "2Gi"
+            cpu: "1"
+            ephemeral-storage: "2Gi"  # Added ephemeral storage limit
         livenessProbe:
           httpGet:
             path: /health/liveness
             port: 8080
-          initialDelaySeconds: 30  # Optimized
+          initialDelaySeconds: 30
           periodSeconds: 10
+          timeoutSeconds: 5  # Added timeout
+          failureThreshold: 3  # Added failure threshold
         readinessProbe:
           httpGet:
             path: /health/readiness
             port: 8080
-          initialDelaySeconds: 10  # Optimized
+          initialDelaySeconds: 10
           periodSeconds: 10
+          timeoutSeconds: 5  # Added timeout
+          failureThreshold: 3  # Added failure threshold
