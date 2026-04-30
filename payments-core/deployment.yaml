@@ -33,20 +33,20 @@ spec:
               key: database-url
         resources:
           requests:
-            memory: "2Gi"  # Updated request for memory
-            cpu: "1"  # Updated request for CPU
+            memory: "2Gi"
+            cpu: "1"
           limits:
-            memory: "4Gi"  # Updated limit for memory
-            cpu: "2"  # Updated limit for CPU
+            memory: "4Gi"
+            cpu: "2"
         livenessProbe:
           httpGet:
             path: /health/liveness
             port: 8080
-          initialDelaySeconds: 30  # Optimized
+          initialDelaySeconds: 30
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /health/readiness
             port: 8080
-          initialDelaySeconds: 10  # Optimized
+          initialDelaySeconds: 10
           periodSeconds: 10
