@@ -65,9 +65,9 @@ kubectl apply -f .
   ```
 
 ## Key Manifests
-- `redis-deployment.yaml`: Deployment configuration for Redis cache service.
-- Manifests in `payments-core/`: Kubernetes resources for the Payments Core service.
-- Manifests in `transaction-engine/`: Kubernetes resources for the Transaction Engine service.
+- [`redis-deployment.yaml`](https://github.com/jakemorrison284/k8s-manifests/blob/main/redis-deployment.yaml): Deployment configuration for Redis cache service.
+- Manifests in [`payments-core/`](https://github.com/jakemorrison284/k8s-manifests/tree/main/payments-core/): Kubernetes resources for the Payments Core service.
+- Manifests in [`transaction-engine/`](https://github.com/jakemorrison284/k8s-manifests/tree/main/transaction-engine/): Kubernetes resources for the Transaction Engine service.
 
 ## Troubleshooting
 - Ensure your kubectl context is set to the correct cluster.
