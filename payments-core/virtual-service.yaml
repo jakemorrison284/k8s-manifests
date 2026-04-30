@@ -18,7 +18,7 @@ spec:
         port:
           number: 8080
       weight: 20
-      timeout: 5s
-      retries:
-        attempts: 3
-        perTryTimeout: 2s
+  timeout: 30s
+  retries:
+    attempts: 3
+    perTryTimeout: 5s
