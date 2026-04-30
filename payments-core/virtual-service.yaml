@@ -20,6 +20,18 @@ spec:
       weight: 20
     timeout: 15s  # Reduced timeout to limit request hanging
     retries:
-      attempts: 2  # Reduced retry attempts to limit retry budget
+      attempts: 3  # Increased retry attempts for better resilience
       perTryTimeout: 3s
       retryOn: gateway-error,connect-failure,refused-stream
+      # Note: Istio does not support jitter natively in retries; consider implementing in client or sidecar.
+  # Optional example for header-based routing for granular canary control:
+  # - match:
+  #   - headers:
+  #       user-segment:
+  #         exact: "beta-testers"
+  #   route:
+  #   - destination:
+  #       host: novapay/payments-core-canary
+  #       port:
+  #         number: 8080
+  #     weight: 100
