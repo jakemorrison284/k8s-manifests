@@ -5,6 +5,11 @@ Kubernetes manifests for all NovaPay services.
 ## Project Overview
 This repository contains Kubernetes manifests that define the deployment, service, and configuration resources for all NovaPay services. The manifests are designed to facilitate the deployment and management of NovaPay applications within Kubernetes clusters, ensuring consistency, scalability, and ease of maintenance.
 
+## Prerequisites
+- Kubernetes cluster (version 1.20 or higher recommended)
+- kubectl command-line tool installed and configured to access your cluster
+- Appropriate cluster access permissions to create and manage resources
+
 ## Installation Instructions
 To set up the Kubernetes manifests, follow these steps:
 1. Clone the repository:
@@ -22,6 +27,25 @@ To apply the Kubernetes manifests, use the following command:
 kubectl apply -f <manifest-file>.yaml
 ```
 Replace `<manifest-file>` with the name of the manifest file you want to apply.
+
+Alternatively, to deploy all manifests in the repository, run:
+```bash
+kubectl apply -f .
+```
+
+## Key Manifests
+- `redis-deployment.yaml`: Deployment configuration for Redis cache service.
+- Manifests in `payments-core/`: Kubernetes resources for the Payments Core service.
+- Manifests in `transaction-engine/`: Kubernetes resources for the Transaction Engine service.
+
+## Troubleshooting
+- Ensure your kubectl context is set to the correct cluster.
+- Check for resource conflicts or missing permissions.
+- Review pod and event logs for error messages.
+
+## Additional Resources
+- [Kubernetes Documentation](https://kubernetes.io/docs/)
+- [NovaPay Documentation](https://docs.novapay.com) (replace with actual URL if available)
 
 ## Contributing
 We welcome contributions! If you'd like to contribute to this repository, please follow these steps:
