@@ -18,8 +18,8 @@ spec:
         port:
           number: 8080
       weight: 20
-    timeout: 15s  # Reduced timeout to limit request hanging
+    timeout: 20s  # Adjusted timeout for realistic service latency
     retries:
-      attempts: 2  # Reduced retry attempts to limit retry budget
-      perTryTimeout: 3s
+      attempts: 3  # Increased retry attempts with caution
+      perTryTimeout: 5s
       retryOn: gateway-error,connect-failure,refused-stream
