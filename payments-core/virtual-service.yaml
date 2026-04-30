@@ -12,14 +12,14 @@ spec:
         host: novapay/payments-core
         port:
           number: 8080
-      weight: 80
+      weight: 90
     - destination:
         host: novapay/payments-core-canary
         port:
           number: 8080
-      weight: 20
-    timeout: 15s  # Reduced timeout to limit request hanging
+      weight: 10
+    timeout: 15s
     retries:
-      attempts: 2  # Reduced retry attempts to limit retry budget
-      perTryTimeout: 3s
+      attempts: 1              # Reduced retry attempts to minimize duplicate side effects
+      perTryTimeout: 2s        # Slightly reduced per try timeout for faster failure detection
       retryOn: gateway-error,connect-failure,refused-stream
