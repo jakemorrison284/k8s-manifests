@@ -2,6 +2,9 @@
 
 Kubernetes manifests for all NovaPay services.
 
+## Project Overview
+This repository contains Kubernetes manifests that define the deployment, service, and configuration resources for all NovaPay services. The manifests are designed to facilitate the deployment and management of NovaPay applications within Kubernetes clusters, ensuring consistency, scalability, and ease of maintenance.
+
 ## Installation Instructions
 To set up the Kubernetes manifests, follow these steps:
 1. Clone the repository:
