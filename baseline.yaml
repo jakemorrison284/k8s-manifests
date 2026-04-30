@@ -8,10 +8,18 @@ securityPolicies:
     exemptNamespaces:
       - kube-system
       - kube-public
+    runtimeSecurity:
+      seccompProfile: "runtime/default"
+      appArmorProfile: "runtime/default"
+    containerCapabilities:
+      dropAll: true
+      add: []
   networkPolicies:
     defaultDeny:
       ingress: true
       egress: true
+    namespaceIsolation: true
+    workloadSpecificRules: true
   resourceLimits:
     cpu:
       request: "250m"
@@ -35,5 +43,16 @@ securityPolicies:
   auditing:
     enableAuditLogging: true
     auditLogRetentionDays: 30
+  availability:
+    podDisruptionBudget:
+      minAvailable: 1
+    replicaCount:
+      min: 2
+  admissionControllers:
+    enableOPA: true
+    enableGatekeeper: true
+  loggingMonitoring:
+    enableSecurityEventLogging: true
+    integrateWithSIEM: true
 
 # Add additional policies as needed
