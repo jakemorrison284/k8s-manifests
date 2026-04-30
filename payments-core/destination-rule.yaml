@@ -15,7 +15,7 @@ spec:
         http1MaxPendingRequests: 50
         maxRequestsPerConnection: 100
     outlierDetection:
-      consecutiveErrors: 5
-      interval: 10s
-      baseEjectionTime: 30s
+      consecutiveErrors: 3  # Lowered threshold for faster ejection
+      interval: 5s       # Increased checking frequency
+      baseEjectionTime: 60s  # Increased ejection duration
       maxEjectionPercent: 50
