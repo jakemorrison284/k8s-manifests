@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:7.0
+        image: redis:8.6.2
         ports:
         - containerPort: 6379
         resources:
@@ -30,4 +30,5 @@ spec:
           name: redis-storage
       volumes:
       - name: redis-storage
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: redis-pvc
