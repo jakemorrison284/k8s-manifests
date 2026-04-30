@@ -10,12 +10,12 @@ spec:
       mode: ISTIO_MUTUAL  # Enable mTLS
     connectionPool:
       tcp:
-        maxConnections: 100
+        maxConnections: 150  # Increased max connections based on traffic considerations
       http:
-        http1MaxPendingRequests: 50
-        maxRequestsPerConnection: 100
+        http1MaxPendingRequests: 75  # Increased pending requests
+        maxRequestsPerConnection: 150  # Increased max requests per connection
     outlierDetection:
-      consecutiveErrors: 3  # Lowered threshold for faster ejection
-      interval: 5s       # Increased checking frequency
-      baseEjectionTime: 60s  # Increased ejection duration
+      consecutiveErrors: 5  # Raised threshold to reduce false positives
+      interval: 10s       # Increased interval to reduce control plane load
+      baseEjectionTime: 90s  # Increased ejection duration
       maxEjectionPercent: 50
