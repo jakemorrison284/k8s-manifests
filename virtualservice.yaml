@@ -1,0 +1,40 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: my-service-virtualservice
+  namespace: default
+spec:
+  hosts:
+  - my-service.default.svc.cluster.local
+  gateways:
+  - my-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        host: my-service
+        subset: v1
+      weight: 80
+    - destination:
+        host: my-service
+        subset: v2
+      weight: 20
+  - match:
+    - uri:
+        prefix: "/api"
+    route:
+    - destination:
+        host: my-service
+        subset: v2
+      weight: 100
+  - fault:
+      abort:
+        httpStatus: 500
+        percentage:
+          value: 5
+    route:
+    - destination:
+        host: my-service
+        subset: v1
