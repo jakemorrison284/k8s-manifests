@@ -4,7 +4,7 @@ metadata:
   name: payments-core
   namespace: novapay
 spec:
-  replicas: 3  # Maintain replicas for availability
+  replicas: 3  # Adjusted replicas for performance
   selector:
     matchLabels:
       app: payments-core
@@ -17,7 +17,7 @@ spec:
         runAsNonRoot: true
       containers:
       - name: payments-core
-        image: internal-mirror/novapay/payments-core:v1.3.1
+        image: novapay/payments-core:v1.3.1
         ports:
         - containerPort: 8080
         env:
@@ -33,11 +33,11 @@ spec:
               key: database-url
         resources:
           requests:
-            memory: "1Gi"  # Increased request for memory to better reflect average load
-            cpu: "500m"  # Increased request for CPU
+            memory: "800Mi"  # Adjusted request for memory
+            cpu: "400m"  # Adjusted request for CPU
           limits:
-            memory: "2Gi"  # Increased limit for memory to handle spikes
-            cpu: "1"  # Increased limit for CPU to allow burst capacity
+            memory: "1.5Gi"  # Adjusted limit for memory
+            cpu: "900m"  # Adjusted limit for CPU
         livenessProbe:
           httpGet:
             path: /health/liveness
