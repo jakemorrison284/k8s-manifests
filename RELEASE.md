@@ -1,3 +1,5 @@
-# Release v0.26.4
+# Preparing for release v0.26.4
 
-This is a minor commit for the release process.
+This commit prepares the repository for the upcoming release.
+
+- Updated release notes.
