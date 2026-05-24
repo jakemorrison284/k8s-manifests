@@ -1,0 +1,6 @@
+# Rollback changes for deployment.yaml
+
+# This file reverts the changes made in commit 3d86266
+# Revert the deployment.yaml to its previous state.
+
+# (Content of the previous deployment.yaml goes here)
