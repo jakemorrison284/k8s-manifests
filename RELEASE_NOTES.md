@@ -1,3 +1,5 @@
-# Release v1.0.3
+# Release Notes
 
-- Minor updates and fixes for v1.0.3.
+## Version 1.0.4
+
+- New features and improvements.
