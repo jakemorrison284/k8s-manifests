@@ -1,7 +1,3 @@
-# Release v1.0.1
+# Release v1.0.2
 
-- Minor updates and fixes.
-
-# Release v1.0.0
-
-This is the first official release of the k8s-manifests project.
+- Minor updates and fixes for v1.0.2.
