@@ -3,4 +3,24 @@
 # This file reverts the changes made in commit 3d86266
 # Revert the deployment.yaml to its previous state.
 
-# (Content of the previous deployment.yaml goes here)
+# Previous deployment configuration details go here.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app-container
+        image: my-app-image:previous-version
+        ports:
+        - containerPort: 80
