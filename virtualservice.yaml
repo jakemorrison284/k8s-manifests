@@ -33,7 +33,7 @@ spec:
       abort:
         httpStatus: 500
         percentage:
-          value: 5
+          value: 1
     route:
     - destination:
         host: my-service
